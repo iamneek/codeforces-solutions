@@ -10,7 +10,7 @@ int main() {
   int t = 0;
   cin >> t;
   for (int i = 0; i < t; i++) {
-    int n = 0, k = 0, count = 0;
+    int n = 0, k = 0, count = 1, ls = 1;
     cin >> n >> k;
     vector<int> ns(n, 0);
     for (int j = 0; j < n; j++) {
@@ -21,10 +21,18 @@ int main() {
       if (j + 1 <= (n - 1)) {
         if ((ns[j + 1] - ns[j]) <= k) {
           count++;
+        } else {
+          if (count > ls) {
+            ls = count;
+          }
+          count = 1;
         }
       }
     }
-    cout << count << "\n";
+    if (count > ls) {
+      ls = count;
+    }
+    cout << n - ls << "\n";
   }
 
   return 0;
