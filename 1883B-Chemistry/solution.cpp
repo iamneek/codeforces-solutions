@@ -1,4 +1,5 @@
 #include <iostream>
+#include <unordered_map>
 using namespace std;
 
 int main() {
@@ -12,15 +13,21 @@ int main() {
     string str;
     cin >> n >> k;
     cin >> str;
-    int count[26] = {0};
-    for (int i = 0; i < n; i++) {
-      count[str[i] % 26]++;
+    unordered_map<char, int> countmap;
+    for (char c : str) {
+      countmap[c]++;
     }
-    if (n % 2 == 0) {
+    int nodds = 0;
+    for (const auto &[ch, count] : countmap) {
+      if (count % 2 != 0)
+        nodds++;
+    }
 
+    if (nodds - k <= 1) {
+      cout << "YES\n";
     } else {
+      cout << "NO\n";
     }
   }
-
   return 0;
 }
