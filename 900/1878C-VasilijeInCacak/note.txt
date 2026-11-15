@@ -1,0 +1,45 @@
+so while solving this problem, I learned that for any sum that can be formed by k numbers within range n,
+the sum will always be within the minimum and maximum sum of k numbers from n.
+
+
+min sum is the 1...k sum
+max sum is the n-k...n sum
+
+if a sum x can be formed using k numbers within 1 to n numbers then the sum x should be:
+
+min sum >= x >= max sum
+
+here's an example:
+
+n := 5, k := 3, x := 10
+
+1, 2, 3, 4, 5
+
+min sum: 1 + 2 + 3 = 6 (upto 3 cuz k = 3)
+max sum: 3 + 4 + 5 = 12
+
+WHY?
+
+there's a pattern:
+if we consider the possible set of k combinations:
+
+1 + 2 + 3 = 6 (the min sum we got before)
+
+1 + 2 + 4 = 7
+
+1 + 2 + 5 = 8 (max we can go is up to 5 because n = 5)
+
+1 + 3 + 5 = 9 (increase the second place for new permutation)
+
+1 + 4 + 5 = 10 (max is 4 for second place, because the question says sum of DISTINCT numbers, so can't be 5 + 5 + 5 or something repetitive.)
+
+2 + 4 + 5 = 11
+
+3 + 4 + 5 = 12 (the max sum we got before)
+
+
+
+if we look at the output, we can see that the output is increment of 1 from min sum to max sum 
+
+so if x can be formed with k, it will 100% be between min and max sum obtained from k numbers in n range,
+because the sums within min sum and max sum is in increasing order.
