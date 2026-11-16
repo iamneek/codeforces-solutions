@@ -1,0 +1,53 @@
+I learned about prefix sum here, 
+
+the concept is simple, you run a cumulative sum 
+
+ex.
+
+a = [2, 3, 4, 5, 6]
+
+we start with copying the first element as the sum up to the first element is itself.
+
+psum[0] = a[0]
+
+now, we loop through a using index increment from 0 to length of a.
+
+and we perform the following operation:
+
+(i<n;i++)
+
+psum[i] = psum[i-1] + a[i]
+i.e.
+(sum upto index i of a) = (previous sum) + (next element)
+
+some iterations:
+
+psum[1] = psum[1-1] + a[1]
+that is,
+psum[1] = psum[0] + a[1]
+
+on the next iteration,
+psum[2] = psum[2-1] + a[2]
+that is,
+psum[2] = psum[1] + a[2]
+
+we can see that we are adding new number to previous cumulative sum;
+
+
+Now why is this helpful?
+
+this helps in finding the sum of a subarray quickly in O(1) time complexity.
+
+say we want the sum of elements form index 1 to 3,
+
+we can simply get it by:
+
+sum = psum[3] - psum[1-1]
+that is,
+sum = psum[3] - psum[0]
+
+we subtract by 1 -1 because 1 is our lower limit and any sum before that should not be added as we only want
+sum from index 1 to 3, so this eliminates the sum before index 1, that is index 0
+
+This replaces the need of a loop that goes from starting range 1 end range 3 and add them, works fine for small
+range, but when the size of array is massive and the range is massive as well, that can take way longer than what prefix sum can achieve easily.
