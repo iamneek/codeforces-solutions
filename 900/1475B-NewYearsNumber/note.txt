@@ -1,0 +1,62 @@
+While doing this, I learned about the division algorithm.
+
+n = d * q + r 
+
+we can think of the problem in terms of mathematical equation as:
+
+2020x + 2021y = n 
+
+so, n = 2020x + (2020+1)y
+
+n = 2020(x + y) + y
+
+if we look closely, we can see that this is in the form n = d * q + r  i.e. (x + y = q)
+
+d = 2020 (we divide by 2020)
+r = y (the remainder, remaining number other than 2020 added to q to comprise the number n) 
+q = x (the quotient, number of 2020 to form the number n)
+
+2020(x+y) is a multiple of 2020, that is the number of 2020 the number n has,
++ y is the remaining values and since we can only add 2020 or 2021, this y should be <= x+y.
+
+if we think of x + y = q as a bucket, this helps. Here's an example:
+
+if n = 4042
+
+4042 / 2020 = 2 (integer division)
+
+we have 2020 + 2020
+
+4042 % 2020 = 2 (remainder is 2)
+we cant add this remainder 2 to single 2020 that would make it 2022 + 2020
+
+but we can add at most 1 to each bucket of 2020
+
+making it, 
+
+2021 + 2021
+
+here, x + y == y,
+
+if we had r = 3
+then it would be 2021 + 2022 or other permutations of this sum.
+
+
+
+# the intuitive derivation for the algorithm:
+
+we know, dividing n means
+
+n - qd
+
+we keep doing the subtraction above and stop when the qd is greater than n 
+and the remaining part that couldn't be made up using the product of qd is the remainder. r. 
+
+given as, 
+r = n - qd
+
+from this we can say, 
+
+n = dq + r 
+
+
